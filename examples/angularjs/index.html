@@ -6,6 +6,19 @@
 		<link rel="stylesheet" href="node_modules/todomvc-common/base.css">
 		<link rel="stylesheet" href="node_modules/todomvc-app-css/index.css">
 		<style>[ng-cloak] { display: none; }</style>
+
+		<script src="lib/angular2.sfx.dev.js"></script>
+		<script>
+      window.ng = angular;
+      window.angular = null;
+		</script>
+		<script src="js/angular2/todo-new-item.js"></script>
+		<style>
+			#new-todo:disabled {
+				background-color: red;
+			}
+		</style>
+
 	</head>
 	<body ng-app="todomvc">
 		<ng-view />
@@ -14,9 +27,8 @@
 			<section id="todoapp">
 				<header id="header">
 					<h1>todos</h1>
-					<form id="todo-form" ng-submit="addTodo()">
-						<input id="new-todo" placeholder="What needs to be done?" ng-model="newTodo" ng-disabled="saving" autofocus>
-					</form>
+
+					<todo-new-item [disabled]="saving" (todo-submitted)="addTodo($event)"></todo-new-item>
 				</header>
 				<section id="main" ng-show="todos.length" ng-cloak>
 					<input id="toggle-all" type="checkbox" ng-model="allChecked" ng-click="markAll(allChecked)">
@@ -71,5 +83,6 @@
 		<script src="js/services/todoStorage.js"></script>
 		<script src="js/directives/todoFocus.js"></script>
 		<script src="js/directives/todoEscape.js"></script>
+		<script src="js/angular2/todo-new-item-shim.js"></script>
 	</body>
 </html>

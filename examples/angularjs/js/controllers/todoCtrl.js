@@ -6,7 +6,7 @@
  * - exposes the model to the template and provides event handlers
  */
 angular.module('todomvc')
-	.controller('TodoCtrl', function TodoCtrl($scope, $routeParams, $filter, store) {
+	.controller('TodoCtrl', function TodoCtrl($scope, $routeParams, $filter, store, $timeout) {
 		'use strict';
 
 		var todos = $scope.todos = store.todos;
@@ -29,9 +29,9 @@ angular.module('todomvc')
 				{ completed: true } : null;
 		});
 
-		$scope.addTodo = function () {
+		$scope.addTodo = function (newTodoTitle) {
 			var newTodo = {
-				title: $scope.newTodo.trim(),
+				title: newTodoTitle.trim(),
 				completed: false
 			};
 
@@ -43,6 +43,8 @@ angular.module('todomvc')
 			store.insert(newTodo)
 				.then(function success() {
 					$scope.newTodo = '';
+
+					return $timeout(1500);
 				})
 				.finally(function () {
 					$scope.saving = false;
