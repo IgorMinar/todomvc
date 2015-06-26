@@ -6,6 +6,10 @@
  * @type {angular.Module}
  */
 angular.module('todomvc', ['ngRoute'])
+
+	// declare an Angular 2 component directive
+	.ng2component('todoNewItem', window.TodoNewItem)
+	
 	.config(function ($routeProvider) {
 		'use strict';
 
