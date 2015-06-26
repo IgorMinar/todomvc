@@ -1,5 +1,3 @@
-
-
 window.TodoNewItem = ng.
   Component({
     selector: 'todo-new-item',
@@ -33,9 +31,3 @@ window.TodoNewItem = ng.
       }).bind(this));
     }
   });
-
-
-
-// document.addEventListener('DOMContentLoaded', function() {
-//   ng.bootstrap(TodoNewItem);
-// });
